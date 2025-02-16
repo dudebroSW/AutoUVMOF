@@ -15,7 +15,7 @@ from bpy import context
 bl_info = {
     "name": "AutoUV MOF Bridge (for Blender)",
     "description": "Automate professional UV unwrapping with Ministry of Flat’s engine, directly in Blender",
-    "blender": (2, 80, 0),  # Minimum Blender version requirement
+    "blender": (3, 6, 4),  # Minimum Blender version requirement
     "category": "UV",
     "location": "View Editor > N-Panel > AutoUV MOF Bridge",
     "version": (0, 0, 1),
