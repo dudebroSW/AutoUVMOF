@@ -18,7 +18,7 @@ Professional UV unwrapping integration between Blender and Ministry of Flat (MOF
 ## Installation
 
 1. **Download** [Ministry of Flat](https://www.quelsolaar.com/ministry_of_flat/) executables
-2. **Download** the latest release ZIP from this GitHub page
+2. **Download** the [latest release ZIP](https://github.com/dudebroSW/AutoUVMOF/releases/) from this GitHub page
 3. **Install in Blender**:
    - Edit > Preferences > Add-ons > Install
    - Select downloaded ZIP file
