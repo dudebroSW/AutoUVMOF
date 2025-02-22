@@ -94,10 +94,38 @@ class AutoUVProperties(bpy.types.PropertyGroup):
         default=True
     )
     
+    # Clean Up Mesh Param
+    sanitize_original_mesh: bpy.props.BoolProperty(
+        name="Sanitize Original Mesh",
+        description="Sanitizes the selected mesh before unwrapping.\nDeletes loose vertices and edges, merges vertices in close proximity (within 0.0001m distance), removes custom split normal data, recalculates normals, and applies default auto smoothing",
+        default=False
+    )
+    
     # Replace Original Mesh Param
     replace_original_mesh: bpy.props.BoolProperty(
         name="Replace Original Mesh",
         description="Replace original geometry with processed version",
+        default=False
+    )
+    
+    # Copy Source UVs Param
+    copy_source_uvs: bpy.props.BoolProperty(
+        name="Copy Source UVs",
+        description="Attempts to copy UV layers from selected mesh onto processed MOF mesh",
+        default=False
+    )
+    
+    # Copy Processed UVs Param
+    copy_processed_uvs: bpy.props.BoolProperty(
+        name="Copy Processed UVs",
+        description="Attempts to copy UV layers from processed MOF mesh back onto selected mesh.\nIgnored when 'Replace Original Mesh' is toggled",
+        default=False
+    )
+
+    # Copy Processed Edge Sharps Param
+    copy_processed_sharps: bpy.props.BoolProperty(
+        name="Copy Processed Edge Sharps",
+        description="Attempts to edges marked sharp from processed MOF mesh back onto selected mesh.\nIgnored when 'Replace Original Mesh' is toggled",
         default=False
     )
 
