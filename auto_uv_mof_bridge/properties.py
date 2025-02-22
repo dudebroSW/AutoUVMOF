@@ -101,6 +101,13 @@ class AutoUVProperties(bpy.types.PropertyGroup):
         default=False
     )
     
+    # Clean Up Processed Mesh Param
+    sanitize_processed_mesh: bpy.props.BoolProperty(
+        name="Sanitize Processed Mesh",
+        description="Sanitizes the MOF processed after unwrapping.\nRemoves custom split normal data and removes sharp edges",
+        default=False
+    )
+    
     # Replace Original Mesh Param
     replace_original_mesh: bpy.props.BoolProperty(
         name="Replace Original Mesh",

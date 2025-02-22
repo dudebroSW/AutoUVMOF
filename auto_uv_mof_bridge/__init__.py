@@ -12,7 +12,7 @@ bl_info = {
     "blender": (3, 6, 4),  # Minimum Blender version requirement
     "category": "UV",
     "location": "View Editor > N-Panel > AutoUV MOF Bridge",
-    "version": (0, 0, 3),
+    "version": (0, 0, 4),
     "author": "dudebroSW",
     "doc_url": "https://www.quelsolaar.com/ministry_of_flat/",
     "tracker_url": "https://github.com/dudebroSW/AutoUVMOF/",

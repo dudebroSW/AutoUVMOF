@@ -106,6 +106,43 @@ class AutoUV(bpy.types.Operator):
         orig_mesh = obj.data
         mof_mesh = mof_obj.data
         mof_uv_layer = mof_mesh.uv_layers[0] if mof_mesh.uv_layers else None
+
+        # Edge Sharpness Transfer
+        if props.copy_processed_sharps and not props.replace_original_mesh:
+            if len(orig_mesh.edges) == len(mof_mesh.edges):
+                sharp_map = {
+                    tuple(sorted(e.vertices)): e.use_edge_sharp
+                    for e in mof_mesh.edges
+                }
+                for e in orig_mesh.edges:
+                    key = tuple(sorted(e.vertices))
+                    if key in sharp_map:
+                        e.use_edge_sharp = sharp_map[key]
+            else:
+                self.report({'WARNING'}, "Unable to copy processed edge sharps. Polygon loop indices mismatch between original and processed meshes.")
+
+        # Clean Up Processed Mesh
+        if props.sanitize_processed_mesh:          
+            # Store the original mode and ensure the object is active and selected
+            original_mode = obj.mode
+            bpy.context.view_layer.objects.active = mof_obj
+            mof_obj.select_set(True)
+            
+            # Switch to Edit mode if not already in it
+            if original_mode != 'EDIT':
+                bpy.ops.object.mode_set(mode='EDIT')
+            
+            # Remove custom split normals
+            bpy.ops.mesh.customdata_custom_splitnormals_clear()
+            
+            # Switch to Object mode to disable sharp edges
+            bpy.ops.object.mode_set(mode='OBJECT')
+            for e in mof_mesh.edges:
+                e.use_edge_sharp = False
+            
+            # Restore the original mode if necessary
+            if original_mode == 'EDIT':
+                bpy.ops.object.mode_set(mode='EDIT')
         
         # UV Data Transfers
         # Copy processed MOF UV back to original mesh
@@ -166,20 +203,6 @@ class AutoUV(bpy.types.Operator):
                     for li in poly.loop_indices:
                         final_uv.data[li].uv = mof_mesh.uv_layers.active.data[li].uv
                 mof_mesh.uv_layers.remove(mof_mesh.uv_layers.active)
-
-        # Edge Sharpness Transfer
-        if props.copy_processed_sharps and not props.replace_original_mesh:
-            if len(orig_mesh.edges) == len(mof_mesh.edges):
-                sharp_map = {
-                    tuple(sorted(e.vertices)): e.use_edge_sharp
-                    for e in mof_mesh.edges
-                }
-                for e in orig_mesh.edges:
-                    key = tuple(sorted(e.vertices))
-                    if key in sharp_map:
-                        e.use_edge_sharp = sharp_map[key]
-            else:
-                self.report({'WARNING'}, "Unable to copy processed edge sharps. Polygon loop indices mismatch between original and processed meshes.")
 
         # Mesh Replacement Logic
         if props.replace_original_mesh:

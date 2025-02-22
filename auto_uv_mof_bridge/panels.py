@@ -56,6 +56,7 @@ class AutoUVPanel(bpy.types.Panel):
         
         if props.show_advanced:
             box.prop(props, "sanitize_original_mesh")
+            box.prop(props, "sanitize_processed_mesh")
             box.prop(props, "replace_original_mesh")
             box.prop(props, "copy_source_uvs")
             box.prop(props, "copy_processed_uvs")
