@@ -5,7 +5,8 @@
 
 Professional UV unwrapping integration between Blender and Ministry of Flat (MOF). This add-on lets you use MOF directly in Blender to unwrap your meshes quickly. Instead of manually exporting files and running commands, it handles everything with one click – it exports your mesh, runs MOF’s unwrapping tools, and brings the new UVs back into Blender. Your original UVs stay untouched as backups, and the new MOF-generated UVs get added as a separate layer. It also copies over sharp edges and materials, and can optionally replace your original mesh with the MOF-processed version (while keeping its position/rotation). Requires MOF installed separately. Useful for game assets, architectural models, or any project where you need clean, automated UV unwrapping.
 
-![blender_S7KDdavQSz](https://github.com/user-attachments/assets/3b5824f8-ffc4-47bf-9412-03f5afc14a6f)
+![blender_QfP0Nr2MY8](https://github.com/user-attachments/assets/f22fe1d6-4d5c-44cf-9252-135656626c29)
+
 
 ## Features
 
