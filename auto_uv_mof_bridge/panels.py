@@ -20,39 +20,39 @@ class AutoUVPanel(bpy.types.Panel):
         layout = self.layout
         props = context.scene.autouv_props
         
-        # Check if exactly one mesh is selected and active
-        selected_meshes = [obj for obj in context.selected_objects if obj.type == 'MESH']
-        valid = (
-            len(selected_meshes) == 1 and (context.active_object is not None and context.active_object.type == 'MESH')
-        )
+        # Get all selected meshes
+        selected = context.selected_objects
+        valid = bool(selected) and all(obj.type == 'MESH' for obj in selected)
+        
+        # Determine button text based on the number of selected meshes
+        if len(selected) > 1:
+            button_text = "Auto UV Unwrap (Batch)"
+        else:
+            button_text = "Auto UV Unwrap"
 
-        # Drop-down Inputs
+        # (Other UI properties and controls...)
         split = layout.split(factor=0.4, align=True)
         split.label(text="Resolution:")
         split.prop(props, "resolution", text="")
 
-        # Boolean Inputs
         layout.prop(props, "separate_hard_edges")
         layout.prop(props, "use_normals")
         layout.prop(props, "overlap_identical")
         layout.prop(props, "overlap_mirrored")
         layout.prop(props, "world_scale")
-        
-        # Numerical Inputs
         layout.prop(props, "aspect_ratio", text="Aspect Ratio")
         layout.prop(props, "texture_density", text="Texture Density")
         layout.prop(props, "udims", text="UDIM Tiles")
-
         layout.label(text="Seam Direction Center:")
         layout.prop(props, "seam_center", text="")
 
-        # Collapsible Advanced Settings
+        # Advanced Settings (collapsible)
         box = layout.box()
         row = box.row()
         row.prop(props, "show_advanced",
-                text="Advanced Settings",
-                emboss=False,
-                icon='TRIA_DOWN' if props.show_advanced else 'TRIA_RIGHT')
+                 text="Advanced Settings",
+                 emboss=False,
+                 icon='TRIA_DOWN' if props.show_advanced else 'TRIA_RIGHT')
         
         if props.show_advanced:
             box.prop(props, "sanitize_original_mesh")
@@ -65,7 +65,7 @@ class AutoUVPanel(bpy.types.Panel):
         # Operator Button
         row = layout.row()
         row.enabled = valid
-        row.operator(f"{__name__.split('.')[0]}.autouvmof", text="Auto UV Unwrap")
+        row.operator(f"{__name__.split('.')[0]}.autouvmof", text=button_text)
 
 def register():
     bpy.utils.register_class(AutoUVPanel)
