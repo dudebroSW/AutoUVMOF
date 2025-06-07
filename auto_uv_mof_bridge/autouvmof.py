@@ -77,9 +77,6 @@ class AutoUV(bpy.types.Operator):
                 bpy.ops.mesh.remove_doubles(threshold=0.00015)
                 bpy.ops.mesh.customdata_custom_splitnormals_clear()
                 bpy.ops.object.mode_set(mode='OBJECT')
-                obj.data.calc_normals()
-                obj.data.use_auto_smooth = True
-                obj.data.auto_smooth_angle = math.radians(35)
                 if original_mode == 'EDIT':
                     bpy.ops.object.mode_set(mode='EDIT')
 
