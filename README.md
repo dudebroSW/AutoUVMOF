@@ -2,18 +2,18 @@
 
 [![Blender Version](https://img.shields.io/badge/Blender-3.6.4+-orange)](https://www.blender.org/) [![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 
-Professional UV unwrapping integration between Blender and Ministry of Flat (MOF). This add-on lets you use MOF directly in Blender to unwrap your meshes quickly. Instead of manually exporting files and running commands, it handles everything with one click – it exports your mesh, runs MOF’s unwrapping tools, and brings the new UVs back into Blender. Your original UVs stay untouched as backups, and the new MOF-generated UVs get added as a separate layer. It also copies over sharp edges and materials and can optionally replace your original mesh with the MOF-processed version (while keeping its position/rotation). Requires MOF installed separately. Useful for game assets, architectural models, or any project where you need clean, automated UV unwrapping.
+UV unwrapping integration between Blender and Ministry of Flat (MOF). This add-on lets you use MOF directly in Blender to unwrap your meshes quickly. Instead of manually exporting files and running commands, it handles everything with one click – it exports your mesh, runs MOF’s unwrapping tools, and brings the new UVs back into Blender. Your original UVs stay untouched as backups, and the new MOF-generated UVs get added as a separate layer. It also copies over sharp edges and materials and can optionally replace your original mesh with the MOF-processed version. Requires MOF installed separately. Useful for game assets, architectural models, or any project where you need clean, automated UV unwrapping.
 
 ![blender_QfP0Nr2MY8](https://github.com/user-attachments/assets/f22fe1d6-4d5c-44cf-9252-135656626c29)
 
 ## Features
 
-- 🎛️ Single-click UV unwrapping utilizing MOF engine  
-- 🚀 Batch Processing: Process multiple meshes in one go with a progress bar update  
-- 📏 Resolution presets from 32 to 4096 for island spacing control
-- 🔄 Aspect ratio control for non-square textures  
-- 🗺️ World-space scaling and texture density settings
-- ⚙️ Advanced settings for mesh replacement, UV transfers, and edge sharpness preservation
+- Single-click UV unwrapping utilizing MOF engine  
+- Batch Processing: Process multiple meshes in one go  
+- Resolution presets from 32 to 4096 for island spacing control
+- Aspect ratio control for non-square textures  
+- World-space scaling and texture density settings
+- Advanced settings for mesh replacement, UV transfers, and edge sharpness preservation
 
 ## Installation
 
@@ -81,8 +81,6 @@ When enabled:
 **Common Issues:**  
 - **"Operation not available":**  
   → Ensure that all selected objects are meshes  
-- **Rotation mismatch:**  
-  → Enable mesh replacement for auto-correction  
 - **Missing MOF executable:**  
   → Verify the MOF directory path in add-on preferences  
 - **Batch Process Freezes/No Feedback:**  
